@@ -2,9 +2,16 @@ from pathlib import Path
 
 
 def main():
-    print(text_from_txt("ciphertext.txt"))
-    print(text_from_txt("training.txt"))
+
+    ciphertext = text_from_txt("ciphertext.txt")
+    training = text_from_txt("training.txt")
+
+    #cipher_table = bigramize(ciphertext)
+
+    print(ciphertext)
+    print(training)
     
+
 
 
 

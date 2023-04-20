@@ -1,17 +1,16 @@
 from pathlib import Path
-
+import bigram_table
 
 def main():
 
     ciphertext = text_from_txt("ciphertext.txt")
     training = text_from_txt("training.txt")
 
-    #cipher_table = bigramize(ciphertext)
+    cipher_table = bigram_table(ciphertext)
 
     print(ciphertext)
     print(training)
-    
-    #hello
+
 
 
 

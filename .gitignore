@@ -1,2 +1,5 @@
 #ignore ciphertext text file - contains text to be decrypted
 .ciphertext.txt
+
+#ignore pycache and such
+*.pyc

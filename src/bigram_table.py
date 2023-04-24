@@ -1,9 +1,11 @@
 
-from constants import alphabet
+import constants
     
-class bigram_table:
+class Bigram_Table:
 
     def __init__(self, text):
+
+        text = text.upper()
 
         self.matrix = self.bigramize(text)
 
@@ -16,19 +18,24 @@ class bigram_table:
         return self.key
 
     
-    def init_key(key):
-        for letter in alphabet:
+    def init_key(self, key):
+        for letter in constants.alphabet:
             key[letter] = letter
         
         #return key
 
-    def bigramize(text):
+    def bigramize(self, text):
 
-        matrix = [[0]]
+        matrix = constants.default_freq_matrix
 
+        for i in range(len(text) - 1):
+            ch1 = text[i]
+            ch2 = text[i + 1]
+            matrix[ch1][ch2] += 1
+        
         return matrix
 
-    def swap(i1, j1, i2, j2):
+    def swap(self, i1, j1, i2, j2):
         
         pass
 

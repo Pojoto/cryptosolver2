@@ -1,12 +1,17 @@
 from pathlib import Path
-import bigram_table
+from bigram_table import Bigram_Table
 
 def main():
 
     ciphertext = text_from_txt("ciphertext.txt")
     training = text_from_txt("training.txt")
 
-    cipher_table = bigram_table(ciphertext)
+    cipher_table = Bigram_Table(ciphertext)
+
+    print(cipher_table.matrix)
+
+    print(cipher_table.matrix["T"]["H"])
+    print(cipher_table.matrix["L"]["K"])
 
     print(ciphertext)
     print(training)

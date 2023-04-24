@@ -28,3 +28,8 @@ class bigram_table:
 
         return matrix
 
+    def swap(i1, j1, i2, j2):
+        
+        pass
+
+

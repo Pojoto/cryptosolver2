@@ -1,5 +1,6 @@
 from pathlib import Path
 from bigram_table import Bigram_Table
+import optimizations
 
 def main():
 
@@ -10,29 +11,39 @@ def main():
 
     training_table = Bigram_Table(training)
 
-    # print(training_table.matrix)
+    print("Eval:", evaluate(training_table, cipher_table))
 
-    print(cipher_table.matrix)
+    print("Decrypted:", decrypt(ciphertext, cipher_table.key))
 
-    print(cipher_table.get_freq("TH"))
-    print(cipher_table.get_freq("LK"))
-    print(cipher_table.get_freq("ZZ"))
-    print(cipher_table.get_freq("ZQ"))
+    print("Swapped.")
+    cipher_table.swap("a", "f")
+
+    print("Eval:", evaluate(training_table, cipher_table))
+
+    print("Decrypted:", decrypt(ciphertext, cipher_table.key))
+
+    optimizations.better_neighbor(cipher_table, training_table, ciphertext)
 
     print()
 
-    print(training_table.get_freq("TH"))
-    print(training_table.get_freq(" t"))
-    print(training_table.get_freq("lk"))
-    print(training_table.get_freq("zq"))
-    print(training_table.get_freq("zz"))
-
+    print("Decrypted:", decrypt(ciphertext, cipher_table.key))
     print("Eval:", evaluate(training_table, cipher_table))
 
     #this is a test comment
 
 
 
+def decrypt(text, key):
+
+    decrypted = ""
+
+    for ch in text.lower():
+        if ch == "\n":
+            decrypted += "\n"
+        else:
+            decrypted += key[ch]
+    
+    return decrypted
 
 
 def evaluate(table1, table2):
@@ -41,7 +52,7 @@ def evaluate(table1, table2):
         dict1 = table1.matrix[dict_key]
         dict2 = table2.matrix[dict_key]
         for key in dict1:
-            difference = (dict1[key] - dict2[key]) ** 2
+            difference = abs(dict1[key] - dict2[key])
             sum += difference
     return sum
 

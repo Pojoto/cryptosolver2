@@ -63,14 +63,19 @@ class Bigram_Table:
 
     def swap(self, key1, key2):
 
-        dict1 = self.matrix[key1]
-        dict2 = self.matrix[key2]
+        value1 = self.key[key1]
+        value2 = self.key[key2]
+
+        dict1 = self.matrix[value1]
+        dict2 = self.matrix[value2]
         
-        for key in dict1.items():
+        for key in dict1:
             dict1[key], dict2[key] = dict2[key], dict1[key]
         
         for dicts in self.matrix.values():
-            dicts[key1], dicts[key2] = dicts[key2], dicts[key1]
+            dicts[value1], dicts[value2] = dicts[value2], dicts[value1]
+        
+        self.key[key1], self.key[key2] = self.key[key2], self.key[key1]
 
                 
 

@@ -1,6 +1,6 @@
 from pathlib import Path
 from bigram_table import Bigram_Table
-import optimizations
+import algorithms
 
 def main():
 
@@ -22,7 +22,8 @@ def main():
 
     print("Decrypted:", decrypt(ciphertext, cipher_table.key))
 
-    optimizations.better_neighbor(cipher_table, training_table, ciphertext)
+    #algorithms.better_neighbor(cipher_table, training_table, ciphertext)
+    algorithms.best_neighbor(cipher_table, training_table, ciphertext)
 
     print()
 
